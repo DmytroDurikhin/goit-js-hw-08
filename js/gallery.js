@@ -89,9 +89,14 @@ galleryContainer.addEventListener('click', handlerImageClick);
 
 function handlerImageClick(event) {
     event.preventDefault();
-    if (event.target === event.currentTarget) {
-        return;
-    }
-    const currentImage = event.target.closest(".gallery-item");
-    console.log(currentImage);
+  
+  if (event.target.nodeName.toLowerCase() !== 'img') return;
+  
+  const largeImageUrl = event.target.dataset.source;
+
+  const instance = basicLightbox.create(`<div class="modal"><img src="${largeImageUrl}" width=1112px
+height=640px></div>`);
+
+  instance.show();
+  
 }
