@@ -88,7 +88,7 @@ galleryContainer.insertAdjacentHTML("beforeend", createCardsMarkup(images));
 galleryContainer.addEventListener('click', handlerImageClick);
 
 function handlerImageClick(event) {
-    event.preventDefault();
+  event.preventDefault();
   
   if (event.target.nodeName.toLowerCase() !== 'img') return;
   
@@ -98,5 +98,15 @@ function handlerImageClick(event) {
 height=640px></div>`);
 
   instance.show();
+
+
+  document.addEventListener("keydown", escClose);
+
+  function escClose(event) {
+    if (event.code === "Escape") {
+      instance.close();
+      document.removeEventListener("keydown", escClose);
   
+    }
+  }
 }
